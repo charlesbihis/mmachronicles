@@ -41,7 +41,7 @@ public class Story {
     private Date updatedDate;
     
     @Persistent
-    private int clicks;
+    private Integer clicks;
     
     // TODO Figure out how to store images
     //@Persistent
@@ -58,7 +58,7 @@ public class Story {
     	private String author = "";
     	private Date publishedDate = null;
     	private Date updatedDate = null;
-    	private int clicks = 0;
+    	private Integer clicks = 0;
     	private Image image = null;
     	
     	public Builder(String title, String url, String teaser, Key sourceFeedKey) {
@@ -143,7 +143,7 @@ public class Story {
     	return updatedDate;
     }  // getUpdatedDate
     
-    public int getClicks() {
+    public Integer getClicks() {
     	return clicks;
     }  // getClicks
     

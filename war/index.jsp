@@ -49,7 +49,7 @@
 				String query = "SELECT FROM " + Feed.class.getName() + " WHERE key == " + story.getSourceFeedKey().getId();
 				Feed feed = ((List<Feed>)persistenceManager.newQuery(query).execute()).get(0);
 				
-				out.println("<a href='" + feed.getUrl() + "'>" + feed.getTitle() + "</a> - <a href='" + story.getUrl() + "'>" + story.getTitle() + "</a><br />");
+				out.println("<a href='" + feed.getUrl() + "'>" + feed.getTitle() + "</a> - <a href='/worker/redirect?url=" + story.getUrl() + "'>" + story.getTitle() + "</a><br />");
 				out.println(story.getTeaser() + "<br /><br />");
 			}  // for loop
 		}  // if-else statement

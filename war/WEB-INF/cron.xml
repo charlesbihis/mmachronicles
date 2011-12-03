@@ -7,7 +7,7 @@
 	</cron>
 	<cron>
 		<url>/</url>
-		<description>Test job to simulate load and check app restarts.</description>
-		<schedule>every 15 minutes</schedule>
+		<description>Cron job to keep my JVM instance alive as long as possible.</description>
+		<schedule>every 1 minutes</schedule>
 	</cron>
 </cronentries>

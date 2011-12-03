@@ -20,6 +20,10 @@
 		<servlet-name>FetchStoriesServlet</servlet-name>
 		<servlet-class>veronica.worker.FetchStories</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>RedirectServlet</servlet-name>
+		<servlet-class>veronica.worker.Redirect</servlet-class>
+	</servlet>
 	
 	<!-- Servlet mappings -->
 	<servlet-mapping>
@@ -30,6 +34,11 @@
 		<servlet-name>FetchStoriesServlet</servlet-name>
 		<url-pattern>/worker/fetch-stories</url-pattern>
 	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>RedirectServlet</servlet-name>
+		<url-pattern>/worker/redirect</url-pattern>
+	</servlet-mapping>
+	
 
 	<!-- Listener to catch loading requests -->
 	<listener>

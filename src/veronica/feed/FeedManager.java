@@ -18,9 +18,33 @@ import com.sun.syndication.io.XmlReader;
 
 public class FeedManager {
 	private static final Logger log = Logger.getLogger(FeedManager.class.getName());
+//	private static final String CACHED_FEEDS_KEY = "cachedFeeds";
 	
 	@SuppressWarnings("unchecked")
 	public static List<Feed> getFeeds() {
+//		List<Feed> feeds = new ArrayList<Feed>();
+//		Cache cache;
+//
+//		// check to see if the feeds are still in the cache
+//		try {
+//			CacheFactory cacheFactory = CacheManager.getInstance().getCacheFactory();
+//			cache = cacheFactory.createCache(Collections.emptyMap());
+//
+//			if (cache.containsKey(CACHED_FEEDS_KEY)) {
+//				System.out.println("CACHE HIT!  FEEDS PULLED FROM CACHE!");
+//				return (List<Feed>)cache.get(CACHED_FEEDS_KEY);
+//			} else {
+//				System.out.println("cache miss...re-inserting feeds into the cache");
+//				PersistenceManager persistenceManager = BigTableDao.get().getPersistenceManager();
+//				String query = "SELECT FROM " + Feed.class.getName();
+//				
+//				feeds = (List<Feed>) persistenceManager.newQuery(query).execute();
+//				cache.put(CACHED_FEEDS_KEY, feeds);
+//			}  // if-else statement
+//		} catch (CacheException e) {
+//			e.printStackTrace();
+//		}  // try-catch statement
+		
 		PersistenceManager persistenceManager = BigTableDao.get().getPersistenceManager();
 		String query = "SELECT FROM " + Feed.class.getName();
 		

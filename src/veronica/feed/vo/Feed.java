@@ -26,10 +26,13 @@ public class Feed {
     private String favicon;
 	
 	@Persistent
-    private int pollRate;
+    private Integer pollRate;
 	
 	@Persistent
     private Date lastPoll;
+	
+	@Persistent
+    private Integer clicks;
 	
 	public static class Builder {
 		// required
@@ -38,7 +41,8 @@ public class Feed {
 		
 		// optional
 		private String favicon = "";
-		private int pollRate = 3600;		// defaults to 1 hour
+		private Integer pollRate = 3600;		// defaults to 1 hour
+		private Integer clicks = 0;
 		
 		public Builder(String url, String title) {
 			this.url = url;
@@ -65,7 +69,8 @@ public class Feed {
 		this.title = builder.title;
 		this.favicon = builder.favicon;
 		this.pollRate = builder.pollRate;
-		this.lastPoll = new Date(new Date().getTime() - 604800000);	// set last poll to be last week by default 
+		this.lastPoll = new Date(new Date().getTime() - 604800000);	// set last poll to be last week by default
+		this.clicks = builder.clicks;
 	}  // Feed
 	
 	public Key getKey() {
@@ -84,7 +89,7 @@ public class Feed {
 		return favicon;
 	}
 
-	public int getPollRate() {
+	public Integer getPollRate() {
 		return pollRate;
 	}
 
@@ -94,5 +99,9 @@ public class Feed {
 
 	public void setLastPoll(Date lastPoll) {
 		this.lastPoll = lastPoll;
+	}
+	
+	public Integer getClicks() {
+		return clicks;
 	}
 }
