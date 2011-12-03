@@ -27,7 +27,7 @@
 
 
 <%@page import="javax.jdo.PersistenceManager"%>
-<%@page import="veronica.BigTableDao"%>
+<%@page import="veronica.util.BigTableDao"%>
 <%@page import="veronica.feed.vo.Feed"%><html>
 
 <head>

@@ -26,7 +26,7 @@
 <body>
 	
 	<h3>Add Feed:</h3>
-	<form action="/add-feed" method="post">
+	<form action="/worker/add-feed" method="post">
 		URL:&nbsp;&nbsp;&nbsp;<input type="text" name="feed-url" />&nbsp;&nbsp;&nbsp;
 		Title:&nbsp;&nbsp;&nbsp;<input type="text" name="feed-title" />&nbsp;&nbsp;&nbsp;
 		Favicon URL:&nbsp;&nbsp;&nbsp;<input type="text" name="feed-favicon" />&nbsp;&nbsp;&nbsp;

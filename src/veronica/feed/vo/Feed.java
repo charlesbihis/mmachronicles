@@ -65,7 +65,7 @@ public class Feed {
 		this.title = builder.title;
 		this.favicon = builder.favicon;
 		this.pollRate = builder.pollRate;
-		this.lastPoll = null;
+		this.lastPoll = new Date(new Date().getTime() - 604800000);	// set last poll to be last week by default 
 	}  // Feed
 	
 	public Key getKey() {

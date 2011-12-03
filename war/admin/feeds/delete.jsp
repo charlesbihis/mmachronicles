@@ -5,7 +5,6 @@
 <%@page import="java.util.List"%>
 <%@page import="veronica.feed.vo.Feed"%>
 <%@page import="veronica.util.BigTableDao"%>
-<%@page import="veronica.story.vo.Story"%>
 <%@page import="javax.jdo.PersistenceManager"%>
 
 <%
@@ -18,17 +17,17 @@
 	}
 
 	PersistenceManager pm = BigTableDao.get().getPersistenceManager();
-	String query = "SELECT FROM " + Story.class.getName();
-	List<Story> stories = (List<Story>) pm.newQuery(query).execute();
+	String query = "SELECT FROM " + Feed.class.getName();
+	List<Feed> feeds = (List<Feed>) pm.newQuery(query).execute();
 	
-	String result = stories.size() + "";
+	String result = feeds.size() + "";
 	
-	if (stories.isEmpty()) {
-		 result = "NO STORIES TO DELETE";
+	if (feeds.isEmpty()) {
+		 result = "NO FEEDS TO DELETE";
 	} else {
 		try {
-			for (Story story : stories) {
-				pm.deletePersistent(story);
+			for (Feed feed : feeds) {
+				pm.deletePersistent(feed);
 			}
 	    } finally {
 	    	pm.close();
@@ -40,11 +39,11 @@
 
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-	<title><%= properties.getProperty("site.title") + " - Delete Stories" %></title>
+	<title><%= properties.getProperty("site.title") + " - Delete Feeds" %></title>
 </head>
 
 <body>
-	<p>Deleting stories...<%= result %></p>
+	<p>Deleting feeds...<%= result %></p>
 </body>
 
 </html>

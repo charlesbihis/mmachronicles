@@ -1,16 +1,14 @@
 package veronica.story;
 
 import java.util.List;
-import java.util.logging.Logger;
 
 import javax.jdo.PersistenceManager;
 
-import veronica.BigTableDao;
 import veronica.story.vo.Story;
+import veronica.util.BigTableDao;
 
 public class StoryManager {
 	private static final int STORIES_PER_PAGE = 15;
-	private static final Logger log = Logger.getLogger(StoryManager.class.getName());
 	
 	public static List<Story> getStories() {
 		return getStories(1);

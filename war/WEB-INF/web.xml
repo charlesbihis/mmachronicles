@@ -1,42 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-xmlns="http://java.sun.com/xml/ns/javaee"
-xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
-xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
-http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	version="2.5">
+
+	<!-- Entry point - Engine initialization -->
+	<servlet>
+		<servlet-name>VeronicaEngine</servlet-name>
+		<servlet-class>veronica.VeronicaEngine</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
 
 	<!-- Servlet definitions -->
 	<servlet>
 		<servlet-name>AddFeedServlet</servlet-name>
-		<servlet-class>veronica.servlet.AddFeedServlet</servlet-class>
+		<servlet-class>veronica.worker.AddFeed</servlet-class>
 	</servlet>
 	<servlet>
-    	<servlet-name>UpdateDaemon</servlet-name>
-    	<servlet-class>veronica.daemon.UpdateDaemon</servlet-class>
-    	<load-on-startup>1</load-on-startup>
-    </servlet>
+		<servlet-name>FetchStoriesServlet</servlet-name>
+		<servlet-class>veronica.worker.FetchStories</servlet-class>
+	</servlet>
 	
 	<!-- Servlet mappings -->
 	<servlet-mapping>
 		<servlet-name>AddFeedServlet</servlet-name>
-		<url-pattern>/add-feed</url-pattern>
+		<url-pattern>/worker/add-feed</url-pattern>
 	</servlet-mapping>
-	
-	
-	
-	<!-- Testing Task Queues -->
-	<servlet>
-		<servlet-name>TestServlet</servlet-name>
-		<servlet-class>veronica.TestServlet</servlet-class>
-	</servlet>
 	<servlet-mapping>
-		<servlet-name>TestServlet</servlet-name>
-		<url-pattern>/worker/testServlet</url-pattern>
+		<servlet-name>FetchStoriesServlet</servlet-name>
+		<url-pattern>/worker/fetch-stories</url-pattern>
 	</servlet-mapping>
-	
+
+	<!-- Listener to catch loading requests -->
+	<listener>
+		<listener-class>veronica.util.LogLoadingRequest</listener-class>
+	</listener>
+
+	<!-- Securing endpoints -->
+	<security-constraint>
+		<web-resource-collection>
+			<url-pattern>/worker/*</url-pattern>
+			<url-pattern>/admin/*</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>admin</role-name>
+		</auth-constraint>
+	</security-constraint>
+
 	<!-- Welcome file -->
 	<welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>
 	</welcome-file-list>
-	
+
 </web-app>

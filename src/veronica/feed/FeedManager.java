@@ -1,16 +1,15 @@
 package veronica.feed;
 
 import java.net.URL;
-import java.util.LinkedList;
+import java.util.Date;
 import java.util.List;
-import java.util.Queue;
 import java.util.logging.Logger;
 
 import javax.jdo.PersistenceManager;
 
-import veronica.BigTableDao;
 import veronica.feed.vo.Feed;
 import veronica.story.vo.Story;
+import veronica.util.BigTableDao;
 
 import com.sun.syndication.feed.synd.SyndEntry;
 import com.sun.syndication.feed.synd.SyndFeed;
@@ -19,28 +18,13 @@ import com.sun.syndication.io.XmlReader;
 
 public class FeedManager {
 	private static final Logger log = Logger.getLogger(FeedManager.class.getName());
-	private static FeedManager instance = null;
-	
-	private Queue<Feed> feedQueue;
-	
-	private FeedManager() {
-		feedQueue = new LinkedList<Feed>();
-	}
-	
-	public static FeedManager getInstance() {
-		if (instance == null) {
-			instance = new FeedManager();
-		}  // if statement
-		
-		return instance;
-	}  // getInstance
 	
 	@SuppressWarnings("unchecked")
 	public static List<Feed> getFeeds() {
-		PersistenceManager pm = BigTableDao.get().getPersistenceManager();
+		PersistenceManager persistenceManager = BigTableDao.get().getPersistenceManager();
 		String query = "SELECT FROM " + Feed.class.getName();
 		
-		return (List<Feed>) pm.newQuery(query).execute();
+		return (List<Feed>) persistenceManager.newQuery(query).execute();
 	}  // getFeeds
 	
 	@SuppressWarnings("unchecked")
@@ -58,9 +42,16 @@ public class FeedManager {
 									.author(story.getAuthor())
 									.publishedDate(story.getPublishedDate())
 									.updatedDate(story.getUpdatedDate()).build();
+				
+				// only try and publish stories with a date later than the last-poll-date of our feed
+				if (storyObj.getPublishedDate().compareTo(feed.getLastPoll()) > 0) {
+					log.info("New story: " + feed.getTitle() + " - '" + story.getTitle() + "'");
+					persistenceManager.makePersistent(storyObj);
+				}  // if statement
 
-				log.info("  -persisting story '" + story.getTitle() + "'");
-				persistenceManager.makePersistent(storyObj);
+				// update the last-poll-date of the feed
+				Feed storedFeed = persistenceManager.getObjectById(Feed.class, feed.getKey());
+				storedFeed.setLastPoll(new Date());
 			}  // for loop
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -72,25 +63,5 @@ public class FeedManager {
 	// TODO Make better teaser-generator
 	private static String makeTeaser(SyndEntry story) {
 		return story.getDescription().getValue().replaceAll("\\<.*?>","").substring(0, 200) + "...";
-	}
-	
-	public boolean enqueue(Feed feed) {
-		boolean result;
-		
-		synchronized(feedQueue) {
-			result = feedQueue.offer(feed);
-		}  // synchronized
-		
-		return result;
-	}  // enqueue
-	
-	public Feed poll() {
-		Feed feed;
-		
-		synchronized(feedQueue) {
-			feed = feedQueue.poll();
-		}  // synchronized
-		
-		return feed;
-	}  // poll
+	}  // makeTeaser
 }  // class declaration
