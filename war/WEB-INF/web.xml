@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns="http://java.sun.com/xml/ns/javaee"
+xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
+
+	<!-- Servlet definitions -->
+	<servlet>
+		<servlet-name>AddFeedServlet</servlet-name>
+		<servlet-class>veronica.servlet.AddFeedServlet</servlet-class>
+	</servlet>
+	<servlet>
+    	<servlet-name>UpdateDaemon</servlet-name>
+    	<servlet-class>veronica.daemon.UpdateDaemon</servlet-class>
+    	<load-on-startup>1</load-on-startup>
+    </servlet>
+	
+	<!-- Servlet mappings -->
+	<servlet-mapping>
+		<servlet-name>AddFeedServlet</servlet-name>
+		<url-pattern>/add-feed</url-pattern>
+	</servlet-mapping>
+	
+	
+	
+	<!-- Testing Task Queues -->
+	<servlet>
+		<servlet-name>TestServlet</servlet-name>
+		<servlet-class>veronica.TestServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>TestServlet</servlet-name>
+		<url-pattern>/worker/testServlet</url-pattern>
+	</servlet-mapping>
+	
+	<!-- Welcome file -->
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+	
+</web-app>
