@@ -1,0 +1,9 @@
+#main {
+	background: none;
+	filter: progid:dximagetransform.microsoft.alphaimageloader(src='images/bg-main-top.png', sizingmethod='crop'); 
+}
+.main-b {
+	background: none;
+	filter: progid:dximagetransform.microsoft.alphaimageloader(src='images/bg-main-bottom.png', sizingmethod='crop'); 
+}
+#footer ul li { z-index: expression( runtimeStyle.zIndex = 1, this == parentNode.firstChild ? (className += " first-child") : 0 ); }

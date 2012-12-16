@@ -3,11 +3,11 @@
 	<cron>
 		<url>/worker/fetch-stories</url>
 		<description>Fetch new stories from our list of feeds.</description>
-		<schedule>every 1 hours</schedule>
+		<schedule>every 15 minutes</schedule>
 	</cron>
 	<cron>
 		<url>/</url>
-		<description>Cron job to keep my JVM instance alive as long as possible.</description>
+		<description>Cron job to keep JVM instance hot.</description>
 		<schedule>every 1 minutes</schedule>
 	</cron>
 </cronentries>

@@ -16,20 +16,25 @@ public class AddFeed extends HttpServlet {
 	private static final Logger log = Logger.getLogger(AddFeed.class.getName());
 	
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+		String url = req.getParameter("url");
 		String feedUrl = req.getParameter("feed-url");
-		String feedTitle = req.getParameter("feed-title");
-		String feedFavicon = req.getParameter("feed-favicon");
-		Integer feedPollRate = Integer.parseInt(req.getParameter("feed-poll-rate"));
+		String title = req.getParameter("title");
+		String favicon = req.getParameter("favicon");
+		Integer pollRate = Integer.parseInt(req.getParameter("poll-rate"));
 		
-		log.info("Persisting Feed: '" + feedTitle + " - " + feedUrl);
-		Feed feed = new Feed.Builder(feedUrl, feedTitle)
-						.favicon(feedFavicon)
-						.pollRate(feedPollRate).build();
+		log.info("Persisting Feed: '" + title + " - " + feedUrl);
+		Feed feed = new Feed.Builder()
+						.url(url)
+						.feedUrl(feedUrl)
+						.title(title)
+						.favicon(favicon)
+						.pollRate(pollRate).build();
 		PersistenceManager persistenceManager = BigTableDao.get().getPersistenceManager();
 		
 		try {
 			persistenceManager.makePersistent(feed);
 		} catch (Exception e) {
+			log.severe("Error storing feed " + feed.getTitle() + " - " + e.getMessage());
 			e.printStackTrace();
 		} finally {
 			persistenceManager.close();

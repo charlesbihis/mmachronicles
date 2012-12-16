@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	version="2.5">
 
@@ -17,12 +18,24 @@
 		<servlet-class>veronica.worker.AddFeed</servlet-class>
 	</servlet>
 	<servlet>
+		<servlet-name>DeleteFeedServlet</servlet-name>
+		<servlet-class>veronica.worker.DeleteFeed</servlet-class>
+	</servlet>
+	<servlet>
 		<servlet-name>FetchStoriesServlet</servlet-name>
 		<servlet-class>veronica.worker.FetchStories</servlet-class>
 	</servlet>
 	<servlet>
 		<servlet-name>RedirectServlet</servlet-name>
 		<servlet-class>veronica.worker.Redirect</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>ImageWarehouse</servlet-name>
+		<servlet-class>veronica.worker.ImageWarehouse</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>FeedServlet</servlet-name>
+		<servlet-class>veronica.worker.FeedServlet</servlet-class>
 	</servlet>
 	
 	<!-- Servlet mappings -->
@@ -31,14 +44,25 @@
 		<url-pattern>/worker/add-feed</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
+		<servlet-name>DeleteFeedServlet</servlet-name>
+		<url-pattern>/worker/delete-feed</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
 		<servlet-name>FetchStoriesServlet</servlet-name>
 		<url-pattern>/worker/fetch-stories</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>RedirectServlet</servlet-name>
-		<url-pattern>/worker/redirect</url-pattern>
+		<url-pattern>/redirect</url-pattern>
 	</servlet-mapping>
-	
+	<servlet-mapping>
+		<servlet-name>ImageWarehouse</servlet-name>
+		<url-pattern>/image</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>FeedServlet</servlet-name>
+		<url-pattern>/rss</url-pattern>
+	</servlet-mapping>
 
 	<!-- Listener to catch loading requests -->
 	<listener>
@@ -60,5 +84,16 @@
 	<welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>
 	</welcome-file-list>
+	
+	<!-- Error pages -->
+	<error-page>
+        <error-code>500</error-code>
+        <location>/errors/servererror.jsp</location>
+    </error-page>
+    
+    <error-page>
+        <error-code>404</error-code>
+        <location>/errors/notfound.jsp</location>
+    </error-page>
 
 </web-app>
