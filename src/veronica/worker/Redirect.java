@@ -29,10 +29,10 @@ public class Redirect extends HttpServlet {
 		String storyKeyValue = req.getParameter("skey");
 		
 		// create the keys
-		Key feedKey = KeyFactory.createKey(null, Feed.class.getSimpleName(), Integer.parseInt(feedKeyValue));
+		Key feedKey = KeyFactory.createKey(null, Feed.class.getSimpleName(), Long.parseLong(feedKeyValue));
 		Key storyKey = null;
 		if (storyKeyValue != null) {
-			 storyKey = KeyFactory.createKey(null, Story.class.getSimpleName(), Integer.parseInt(storyKeyValue));
+			 storyKey = KeyFactory.createKey(null, Story.class.getSimpleName(), Long.parseLong(storyKeyValue));
 		}  // if statement
 		
 		// record the click
