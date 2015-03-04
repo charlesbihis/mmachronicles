@@ -3,6 +3,7 @@
 
 	<application>project-veronica</application>
 	<version>current</version>
+	<threadsafe>true</threadsafe>
 	
 	<!-- Configure java.util.logging -->
 	<system-properties>
