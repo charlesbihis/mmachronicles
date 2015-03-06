@@ -28,6 +28,9 @@
 	<!--[if lt IE 7]><link rel="stylesheet" type="text/css" href="css/lt7.css" media="screen"/><![endif]-->
 </head>
 <body>
+	<!-- analytics -->
+	<jsp:include page="/inc/analytics/analytics.tpl" />
+	
 	<div id="wrapper">
 		<!-- logo -->
 		<h1 class="logo"><a href="/"><%= properties.getProperty("site.title") %></a></h1>
