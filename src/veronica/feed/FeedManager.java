@@ -361,7 +361,7 @@ public class FeedManager {
 		try {
 			
 			// HACK: Apparently there is a bug where FetchOptions will not respect doNotValidateCertificate()
-			//		 request to disable SSL cert check -> https://code.google.com/p/googleappengine/issues/detail?id=5203
+			//		 request to disable SSL cert check on development server -> https://code.google.com/p/googleappengine/issues/detail?id=5203
 			if (SystemProperty.environment.value() == SystemProperty.Environment.Value.Development) {
 				urlString = urlString.replace("https://", "http://");
 			}
