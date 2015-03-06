@@ -73,7 +73,7 @@
 						<p>Ha, unfortunately not.  Since we aggregate stories from multiple feeds across the web, we sometimes are unable to correctly determine the proper timezone for the original article.  Because of this, sometimes our post-times are off by up to a few hours.  We make our best guess, but it's not always 100% right.  We'll get it eventually :)</p>
 						
 						<h3><a name="theres-a-problem"></a>How do I report a problem with the site?</h3>
-						<p>If you find something wrong on the site, or you find a questionable article that snuck into the feed, e-mail us at <a href="problem@mmachronicles.com">problem@mmachronicles.com</a> and we'll address it right away!  Don't be shy ;)</p>
+						<p>If you find something wrong on the site, or you find a questionable article that snuck into the feed, e-mail us at <a href="feedback@mmachronicles.com">feedback@mmachronicles.com</a> and we'll address it right away!  Don't be shy ;)</p>
 						
 						<h3><a name="suggest-a-feature"></a>Can I suggest features to add to the site?</h3>
 						<p>Yes, please do!  Without hearing from you, we won't know what to add to our site next!  Reach us at <a href="mailto:feedback@mmachronicles.com">feedback@mmachronicles.com</a> and tell your friends!
