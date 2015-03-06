@@ -42,8 +42,6 @@
 						<h2><%= properties.getProperty("faq.header") %></h2>
 						<ul>
 							<li><a href="#how-does-it-work">How does MMA Chronicles work?</a></li>
-							<li><a href="#write-all-articles">Does MMA Chronicles write all of these articles?</a></li>
-							<li><a href="#is-this-stealing">Is MMA Chronicles stealing these articles?</a></li>
 							<li><a href="#add-us">Can I get my site added to MMA Chronicles?</a></li>
 							<li><a href="#remove-us">Stories from my site are being listed here and I don't like it.  Can I get my site removed from MMA Chronicles?</a></li>
 							<li><a href="#can-i-submit">Can I submit a single story to MMA Chronicles?</a></li>
@@ -56,13 +54,7 @@
 						<br />
 						
 						<h3><a name="how-does-it-work"></a>How does MMA Chronicles work?</h3>
-						<p>MMA Chronicles scours the web and pulls in stories from all of the top MMA websites and blogs!  Whenever a new story is posted, MMA Chronicles gets updated and posts the story in our main feed	within minutes!  This allows users to have a single source where they can find out all of the latest news!</p>
-						
-						<h3><a name="write-all-articles"></a>Does MMA Chronicles write all of these articles?</h3>
-						<p>No, we do not actually write all of these articles.  MMA Chronicles is what's called a "News Aggregator".  Our job is to pull in all of the relevant news items from the various MMA sites from around the web, so you don't have to search for them.</p>
-						
-						<h3><a name="is-this-stealing"></a>Is MMA Chronicles stealing these articles?</h3>
-						<p>Most definitely not!  Since we are pulling in stories from new sites and blogs from all around the web, it might be easy to think so, but we definitely do no such thing.  We use a system of RSS- and Atom-readers to pull in our stories, so we are not taking anything from the sites that they do not offer for sharing in the first place.  In fact, we only show teasers to the articles, and never display the full article, even if it is available in the feed.  We also always link directly to the originating site where the user can read the full story.  So, we are actually driving traffic to our aggregated sites.  In this sense, we hope to think that this system is a win-win for everyone, both the readers and the content producers.  However, if there are any website-owners or writers out there that feel otherwise and do NOT want their stories listed in our feed, just <a href="mailto:removeus@mmachronicles.com">let us know</a> and we'll be more than happy to remove it for you.  On the other hand, if you're a website owner or content producer and you WOULD like your stories to be posted here, also <a href="mailto:addus@mmachronicles.com">let us know</a>.  We'll be happy to hear from you!</p>
+						<p>MMA Chronicles is what's called a "News Aggregator".  We scour the web and pull in stories from all of the top MMA websites and blogs.  Whenever a new story is posted, MMA Chronicles gets updated and posts the story in our main feed	within minutes.  This allows users to have a single source where they can find out all of the latest news!</p>
 						
 						<h3><a name="add-us"></a>Can I get my site added to MMA Chronicles?</h3>
 						<p>Yes, you can definitely add your site to our feed!  Just e-mail us at <a href="mailto:addus@mmachronicles.com">addus@mmachronicles.com</a>!  All you need is a valid RSS/Atom feed that we can pull your stories from.</p>
