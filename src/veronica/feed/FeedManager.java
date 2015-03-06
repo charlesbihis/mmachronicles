@@ -1,11 +1,8 @@
 package veronica.feed;
 
 import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.net.URLConnection;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -42,6 +39,13 @@ import com.google.appengine.api.images.Image;
 import com.google.appengine.api.images.ImagesService;
 import com.google.appengine.api.images.ImagesServiceFactory;
 import com.google.appengine.api.images.Transform;
+import com.google.appengine.api.urlfetch.FetchOptions;
+import com.google.appengine.api.urlfetch.HTTPMethod;
+import com.google.appengine.api.urlfetch.HTTPRequest;
+import com.google.appengine.api.urlfetch.HTTPResponse;
+import com.google.appengine.api.urlfetch.URLFetchService;
+import com.google.appengine.api.urlfetch.URLFetchServiceFactory;
+import com.google.appengine.api.utils.SystemProperty;
 import com.sun.syndication.feed.synd.SyndCategory;
 import com.sun.syndication.feed.synd.SyndContent;
 import com.sun.syndication.feed.synd.SyndEntry;
@@ -353,36 +357,26 @@ public class FeedManager {
 	}  // extractUrls
 	
 	private static byte[] grabImageFromUrl(String urlString) {
-		ByteArrayOutputStream bais = new ByteArrayOutputStream();
-		
+		HTTPResponse response = null;
 		try {
+			
+			// HACK: Apparently there is a bug where FetchOptions will not respect doNotValidateCertificate()
+			//		 request to disable SSL cert check -> https://code.google.com/p/googleappengine/issues/detail?id=5203
+			if (SystemProperty.environment.value() == SystemProperty.Environment.Value.Development) {
+				urlString = urlString.replace("https://", "http://");
+			}
+			
 			URL url = new URL(urlString);
-			URLConnection urlConnection = url.openConnection();
-			InputStream inputStream = null;
-			
-			try {
-				inputStream = urlConnection.getInputStream();
-				byte[] byteChunk = new byte[4096];	// or whatever size to read in at a time
-				
-				int n;
-				while ((n = inputStream.read(byteChunk)) > 0) {
-					bais.write(byteChunk, 0, n);
-				}  // while loop
-			} catch (IOException e) {
-				log.severe("Failed while reading bytes from " + url.toExternalForm() + ": " + e.getMessage());
-				e.printStackTrace();
-			} finally {
-				if (inputStream != null) {
-					inputStream.close();
-				}  // if statement
-			}  // try-catch statement
-			
+			URLFetchService fetcher = URLFetchServiceFactory.getURLFetchService();
+	        FetchOptions fetchOptions = FetchOptions.Builder.withDefaults().doNotValidateCertificate(); 
+	        HTTPRequest request = new HTTPRequest(url, HTTPMethod.GET, fetchOptions);
+	        response = fetcher.fetch(request);
 		} catch (Exception e) {
 			log.severe("Error retrieving image from " + urlString + " - " + e.getMessage());
 			e.printStackTrace();
 		}  // try-catch statement
 		
-		return bais.toByteArray();
+		return response.getContent();
 	}  // grabImageFromUrl
 	
 	private static Blob modifyImage(byte[] imageByteArray) throws IllegalArgumentException {
